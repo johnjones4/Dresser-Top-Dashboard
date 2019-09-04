@@ -1,0 +1,7 @@
+Pillow
+requests
+exchangelib
+pytz
+pyyaml
+feedparser
+dateutil

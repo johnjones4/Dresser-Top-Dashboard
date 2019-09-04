@@ -1,0 +1,5 @@
+config.yaml
+__pycache__
+*.pyc
+dashboard.png
+.vscode

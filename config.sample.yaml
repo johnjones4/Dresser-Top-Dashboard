@@ -1,0 +1,75 @@
+output: "./dashboard.png"
+
+dashboard:
+  width: 1200
+  height: 825
+  gutter: 10
+  rows: 4
+  cols: 4
+
+widget:
+  font_size: 16
+  padding: 5
+
+widgets:
+
+  # Loads today's events from one or more Exchange calendars. It could support other formats if someone so desired
+  - type: "calendar"
+    timezone: "America/New_York"
+    position:
+      row: 0
+      col: 0
+      row_span: 4
+      col_span: 2
+    calendars:
+      - type: "exchange"
+        username: # DOMAIN\user
+        password: # password
+        address: # me@domain.com
+
+  # Pulls the next DC WMATA train arrival prediction time for a specific station going in a specific direction
+  - type: "wmata"
+    api_key: # Setup an API account at https://developer.wmata.com/
+    station: # Station code for your local station
+    destination: # Station code for the end-of-the-line direction you take, which may not be your actual destination
+    position:
+      row: 0
+      col: 2
+      row_span: 1
+      col_span: 1
+
+  # Loads the current weather from OpenWeatherMap
+  - type: "weather"
+    api_key: # Setup an API account at https://openweathermap.org/
+    zip: # See the Zip section on https://openweathermap.org/current
+    units: # imperial or metric
+    position:
+      row: 1
+      col: 2
+      row_span: 1
+      col_span: 2
+
+  # Loads an RSS feed and orders by date, descending
+  - type: "rss"
+    feeds:
+      - "http://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml"
+      - "http://www.npr.org/rss/rss.php?id=1001"
+      - "https://feeds.a.dj.com/rss/WSJcomUSBusiness.xml"
+      - "https://feeds.a.dj.com/rss/RSSWorldNews.xml"
+      - "https://feeds.a.dj.com/rss/RSSWSJD.xml"
+      - "https://news.ycombinator.com/rss"
+    position:
+      row: 2
+      col: 2
+      row_span: 2
+      col_span: 2
+
+  # Prints out a message
+  - type: "message"
+    message: # Any string message
+    url: # OR have the dashboard read and display plaintext from a URL
+    position:
+      row: 0
+      col: 3
+      row_span: 1
+      col_span: 1
