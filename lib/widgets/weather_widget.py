@@ -1,7 +1,7 @@
 from lib.widget import Widget
 import requests
 
-class Weather_Widget(Widget):
+class WeatherWidget(Widget):
   def __init__(self, font_size, inset, config):
     super().__init__("Weather", font_size, inset, config)
     self.api_key = config['api_key']

@@ -1,7 +1,7 @@
 from lib.widget import Widget
 import requests
 
-class Message_Widget(Widget):
+class MessageWidget(Widget):
   def __init__(self, font_size, inset, config):
     super().__init__("Message", font_size, inset, config)
     self.message = config["message"] if "message" in config else None

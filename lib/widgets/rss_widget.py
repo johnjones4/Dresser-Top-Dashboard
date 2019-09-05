@@ -2,7 +2,7 @@ from lib.widget import Widget
 import feedparser
 from dateutil import parser
 
-class RSS_Widget(Widget):
+class RSSWidget(Widget):
   def __init__(self, font_size, inset, config):
     super().__init__("News", font_size, inset, config)
     self.feeds = config["feeds"]
