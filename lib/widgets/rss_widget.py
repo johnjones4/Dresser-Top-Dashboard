@@ -3,8 +3,8 @@ import feedparser
 from dateutil import parser
 
 class RSSWidget(Widget):
-  def __init__(self, font_size, inset, config):
-    super().__init__("News", font_size, inset, config)
+  def __init__(self, font_size, font_path, inset, config):
+    super().__init__("News", font_size, font_path, inset, config)
     self.feeds = config["feeds"]
 
   def generate_content(self, drawable, x, y, width, height):

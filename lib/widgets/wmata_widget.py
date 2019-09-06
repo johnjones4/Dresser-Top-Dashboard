@@ -2,8 +2,8 @@ from lib.widget import Widget
 import requests
 
 class WMATAWidget(Widget):
-  def __init__(self, font_size, inset, config):
-    super().__init__("Next Train", font_size, inset, config)
+  def __init__(self, font_size, font_path, inset, config):
+    super().__init__("Next Train", font_size, font_path, inset, config)
     self.api_key = config['api_key']
     self.station = config['station']
     self.destination = config['destination']

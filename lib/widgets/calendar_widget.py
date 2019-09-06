@@ -4,8 +4,8 @@ from datetime import date, datetime
 import pytz
 
 class CalendarWidget(Widget):
-  def __init__(self, font_size, inset, config):
-    super().__init__("Calendar", font_size, inset, config)
+  def __init__(self, font_size, font_path, inset, config):
+    super().__init__("Calendar", font_size, font_path, inset, config)
     self.timezone = pytz.timezone(config["timezone"])
     self.calendars = []
     for calendar_config in config["calendars"]:

@@ -2,8 +2,8 @@ from lib.widget import Widget
 import requests
 
 class WeatherWidget(Widget):
-  def __init__(self, font_size, inset, config):
-    super().__init__("Weather", font_size, inset, config)
+  def __init__(self, font_size, font_path, inset, config):
+    super().__init__("Weather", font_size, font_path, inset, config)
     self.api_key = config['api_key']
     self.zip = config['zip']
     self.units = config['units']
