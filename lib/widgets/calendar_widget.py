@@ -3,7 +3,7 @@ from exchangelib import DELEGATE, Account, Credentials, EWSDateTime
 from datetime import date, datetime
 import pytz
 
-class Calendar_Widget(Widget):
+class CalendarWidget(Widget):
   def __init__(self, font_size, inset, config):
     super().__init__("Calendar", font_size, inset, config)
     self.timezone = pytz.timezone(config["timezone"])

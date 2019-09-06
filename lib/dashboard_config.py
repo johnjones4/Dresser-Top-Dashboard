@@ -1,10 +1,10 @@
 import yaml
 from lib.dashboard import Dashboard
-from lib.widgets.wmata_widget import Wmata_Widget
-from lib.widgets.weather_widget import Weather_Widget
-from lib.widgets.calendar_widget import Calendar_Widget
-from lib.widgets.rss_widget import RSS_Widget
-from lib.widgets.message_widget import Message_Widget
+from lib.widgets.WMATAWidget import WMATAWidget
+from lib.widgets.WeatherWidget import WeatherWidget
+from lib.widgets.CalendarWidget import CalendarWidget
+from lib.widgets.RSSWidget import RSSWidget
+from lib.widgets.MessageWidget import MessageWidget
 
 class DashboardConfig:
   def __init__(self, path):
@@ -43,12 +43,12 @@ class DashboardConfig:
 
   def init_widget(self, widget_type, font_size, padding, config):
     if widget_type == "calendar":
-      return Calendar_Widget(font_size, padding, config)
+      return CalendarWidget(font_size, padding, config)
     elif widget_type == "wmata":
-      return Wmata_Widget(font_size, padding, config)
+      return WMATAWidget(font_size, padding, config)
     elif widget_type == "weather":
-      return Weather_Widget(font_size, padding, config)
+      return WeatherWidget(font_size, padding, config)
     elif widget_type == "rss":
-      return RSS_Widget(font_size, padding, config)
+      return RSSWidget(font_size, padding, config)
     elif widget_type == "message":
-      return Message_Widget(font_size, padding, config)
+      return MessageWidget(font_size, padding, config)
