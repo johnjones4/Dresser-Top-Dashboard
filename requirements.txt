@@ -4,4 +4,4 @@ exchangelib
 pytz
 pyyaml
 feedparser
-dateutil
+python-dateutil
