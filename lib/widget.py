@@ -1,10 +1,11 @@
 from PIL import Image, ImageDraw, ImageFont
 
 class Widget:
-  def __init__(self, title, font_size, inset, config):
+  def __init__(self, title, font_size, font_path, inset, config):
     self.title = title
     self.inset = inset
     self.font_size = font_size
+    self.font_path = font_path
     self.position = config["position"]
 
   def generate(self, mode, width, height, color):
@@ -21,7 +22,7 @@ class Widget:
   def get_font(self, ofsize=None):
     if ofsize is None:
       ofsize = self.font_size
-    return ImageFont.truetype("/System/Library/Fonts/HelveticaNeue.ttc", ofsize, 0)
+    return ImageFont.truetype(self.font_path, ofsize, 0)
 
   def get_position(self):
     return (self.position["row"], self.position["col"], self.position["row_span"], self.position["col_span"])

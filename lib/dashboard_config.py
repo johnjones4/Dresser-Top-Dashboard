@@ -34,21 +34,22 @@ class DashboardConfig:
     widget_global_config = self.get("widget")
     font_size = widget_global_config["font_size"]
     padding = widget_global_config["padding"]
+    font_path = widget_global_config["font_path"]
     widgets = self.get("widgets")
     widget_instances = []
     for widget_config in widgets:
-      widget = self.init_widget(widget_config["type"], font_size, padding, widget_config)
+      widget = self.init_widget(widget_config["type"], font_size, font_path, padding, widget_config)
       widget_instances.append(widget)
     return widget_instances
 
-  def init_widget(self, widget_type, font_size, padding, config):
+  def init_widget(self, widget_type, font_size, font_path, padding, config):
     if widget_type == "calendar":
-      return CalendarWidget(font_size, padding, config)
+      return CalendarWidget(font_size, font_path, padding, config)
     elif widget_type == "wmata":
-      return WMATAWidget(font_size, padding, config)
+      return WMATAWidget(font_size, font_path, padding, config)
     elif widget_type == "weather":
-      return WeatherWidget(font_size, padding, config)
+      return WeatherWidget(font_size, font_path, padding, config)
     elif widget_type == "rss":
-      return RSSWidget(font_size, padding, config)
+      return RSSWidget(font_size, font_path, padding, config)
     elif widget_type == "message":
-      return MessageWidget(font_size, padding, config)
+      return MessageWidget(font_size, font_path, padding, config)
