@@ -1,10 +1,10 @@
 import yaml
 from lib.dashboard import Dashboard
-from lib.widgets.WMATAWidget import WMATAWidget
-from lib.widgets.WeatherWidget import WeatherWidget
-from lib.widgets.CalendarWidget import CalendarWidget
-from lib.widgets.RSSWidget import RSSWidget
-from lib.widgets.MessageWidget import MessageWidget
+from lib.widgets.wmata_widget import WMATAWidget
+from lib.widgets.weather_widget import WeatherWidget
+from lib.widgets.calendar_widget import CalendarWidget
+from lib.widgets.rss_widget import RSSWidget
+from lib.widgets.message_widget import MessageWidget
 
 class DashboardConfig:
   def __init__(self, path):
