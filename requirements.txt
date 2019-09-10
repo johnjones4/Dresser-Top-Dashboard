@@ -5,3 +5,4 @@ pytz
 pyyaml
 feedparser
 python-dateutil
+icalendar

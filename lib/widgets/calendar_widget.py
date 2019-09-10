@@ -2,23 +2,20 @@ from lib.widget import Widget
 from exchangelib import DELEGATE, Account, Credentials, EWSDateTime
 from datetime import date, datetime
 import pytz
+import requests
+from icalendar import Calendar, Event
 
 class CalendarWidget(Widget):
   def __init__(self, font_size, font_path, inset, config):
     super().__init__("Calendar", font_size, font_path, inset, config)
     self.timezone = pytz.timezone(config["timezone"])
-    self.calendars = []
-    for calendar_config in config["calendars"]:
-      if calendar_config["type"] == "exchange":
-        self.calendars.append({
-          "username": calendar_config["username"],
-          "password": calendar_config["password"],
-          "address": calendar_config["address"]
-        })
+    self.calendars = config["calendars"]
     
   def generate_content(self, drawable, x, y, width, height):
     today = date.today()
-    events = self.get_calendars(today)
+    this_morning = datetime(today.year, today.month, today.day, 0, 0, 0, 0, self.timezone)
+    this_evening = datetime(today.year, today.month, today.day, 23, 59, 59, 0, self.timezone)
+    events = self.get_calendars(this_morning, this_evening)
     # min_datetime = events[0]["start"]
     # max_datetime = datetime(today.year, today.month, today.year, 0, 0, 0)
     # for event in events:
@@ -52,21 +49,37 @@ class CalendarWidget(Widget):
   def date_to_seconds(self, dt):
     return dt.second + (dt.minute * 60) + (dt.hour * 60 * 60)
   
-  def get_calendars(self, today):
+  def get_calendars(self, this_morning, this_evening):
     events = []
     for calendar in self.calendars:
-      credentials = Credentials(username=calendar["username"], password=calendar["password"])
-      account = Account(primary_smtp_address=calendar["address"], credentials=credentials, autodiscover=True, access_type=DELEGATE)
-      calendar_items = account.calendar.view(
-        start=account.default_timezone.localize(EWSDateTime(today.year, today.month, today.day, 0, 0, 0)),
-        end=account.default_timezone.localize(EWSDateTime(today.year, today.month, today.day, 23, 59, 59))
-      )
-      for calendar_item in calendar_items:
-        events.append({
-          "subject": calendar_item.subject,
-          "start": calendar_item.start,
-          "end": calendar_item.end
-        })
+      if calendar["type"] == "exchange":
+        credentials = Credentials(username=calendar["username"], password=calendar["password"])
+        account = Account(primary_smtp_address=calendar["address"], credentials=credentials, autodiscover=True, access_type=DELEGATE)
+        calendar_items = account.calendar.view(
+          start=account.default_timezone.localize(EWSDateTime(this_morning.year, this_morning.month, this_morning.day, 0, 0, 0)),
+          end=account.default_timezone.localize(EWSDateTime(this_morning.year, this_morning.month, this_morning.day, 23, 59, 59))
+        )
+        for calendar_item in calendar_items:
+          events.append({
+            "subject": calendar_item.subject,
+            "start": calendar_item.start,
+            "end": calendar_item.end
+          })
+      elif calendar["type"] == "ics":
+        c = Calendar.from_ical(requests.get(calendar["url"]).text)
+        for component in c.walk():
+          if 'DTSTART' in component and 'DTEND' in component:
+            start = None
+            end = None
+            if isinstance(component["DTSTART"].dt, datetime):
+              start = component["DTSTART"].dt.astimezone(self.timezone)
+              end = component["DTEND"].dt.astimezone(self.timezone)
+              if end >= this_morning and start <= this_evening:
+                events.append({
+                  "subject": component["summary"],
+                  "start": start,
+                  "end": end
+                })
     events.sort(key=lambda event: event["start"])
     return events
 
