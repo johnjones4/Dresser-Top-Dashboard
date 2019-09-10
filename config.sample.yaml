@@ -26,7 +26,8 @@ widgets:
         username: # DOMAIN\user
         password: # password
         address: # me@domain.com
-
+      - type: "ics"
+        url: #URL to ics feed
   # Pulls the next DC WMATA train arrival prediction time for a specific station going in a specific direction
   - type: "wmata"
     api_key: # Setup an API account at https://developer.wmata.com/
