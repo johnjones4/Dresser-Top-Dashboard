@@ -1,5 +1,4 @@
 from PIL import Image
-import traceback
 
 class Dashboard:
   def __init__(self, width, height, rows, cols, gutter):
@@ -29,13 +28,10 @@ class Dashboard:
     color = 255
     generated_image = Image.new(mode, (self.width, self.height), color=color)
     for (widget, row, col, row_span, col_span) in self.widgets:
-      try:
-        x = int(self.col_size * col + (self.gutter / 2.0))
-        y = int(self.row_size * row + (self.gutter / 2.0))
-        width = int(self.col_size * col_span - self.gutter)
-        height = int(self.row_size * row_span - self.gutter)
-        image = widget.generate(mode, width, height, color)
-        generated_image.paste(image, (x, y))
-      except:
-        print(traceback.format_exc())
+      x = int(self.col_size * col + (self.gutter / 2.0))
+      y = int(self.row_size * row + (self.gutter / 2.0))
+      width = int(self.col_size * col_span - self.gutter)
+      height = int(self.row_size * row_span - self.gutter)
+      image = widget.generate(mode, width, height, color)
+      generated_image.paste(image, (x, y))
     return generated_image

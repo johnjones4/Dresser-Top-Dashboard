@@ -80,6 +80,8 @@ class CalendarWidget(Widget):
                   "start": start,
                   "end": end
                 })
+      else:
+        raise Exception("The calendar type \"%s\" is not supported." % (calendar["type"], ))
     events.sort(key=lambda event: event["start"])
     return events
 

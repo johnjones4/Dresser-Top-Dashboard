@@ -1,4 +1,5 @@
 from PIL import Image, ImageDraw, ImageFont
+import traceback
 
 class Widget:
   def __init__(self, title, font_size, font_path, inset, config):
@@ -13,10 +14,23 @@ class Widget:
     drawable = ImageDraw.Draw(image)
     drawable.rectangle(((0,0), (width-1,height-1)), fill=None, outline=0, width=1)
     drawable.text((self.inset, self.inset), self.title, fill=0, font=self.get_font())
-    self.generate_content(drawable, self.inset, self.inset + self.font_size, width - (self.inset * 2), height - (self.inset * 2) - self.font_size)
+    try:
+      self.generate_content(drawable, self.inset, self.inset + self.font_size, width - (self.inset * 2), height - (self.inset * 2) - self.font_size)
+    except Exception as e:
+      print(traceback.format_exc())
+      self.generate_error_content(drawable, self.inset, self.inset + self.font_size, width - (self.inset * 2), height - (self.inset * 2) - self.font_size, str(e))
     return image
 
   def generate_content(self, drawable, x, y, width, height):
+    return
+
+  def generate_error_content(self, drawable, x, y, width, height, error_str):
+    text_lines = self.text_to_render_array(drawable, error_str, width, self.font_size)
+    last_y = y
+    line_spacing = self.font_size * 1.1
+    for line in text_lines:
+      drawable.text((x,last_y), line, font=self.get_font(self.font_size), fill=0)
+      last_y += line_spacing
     return
 
   def get_font(self, ofsize=None):

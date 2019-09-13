@@ -13,7 +13,7 @@ class DashboardConfig:
 
   def load_config(self):
     with open(self.path, 'r') as file:
-      self.config = yaml.load(file.read())
+      self.config = yaml.load(file.read(), Loader=yaml.SafeLoader)
 
   def get(self, key):
     if key not in self.config:
