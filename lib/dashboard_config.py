@@ -7,9 +7,11 @@ from lib.widgets.rss_widget import RSSWidget
 from lib.widgets.message_widget import MessageWidget
 
 class DashboardConfig:
-  def __init__(self, path):
+  def __init__(self, path, args):
     self.path = path
     self.load_config()
+    if len(args) > 1:
+      self.config["output"] = args[1]
 
   def load_config(self):
     with open(self.path, 'r') as file:

@@ -1,5 +1,3 @@
-output: "./dashboard.png"
-
 dashboard:
   width: 1200
   height: 825
@@ -10,6 +8,7 @@ dashboard:
 widget:
   font_size: 16
   padding: 5
+  font_path: ./opensans-master/ttfs/OpenSans-Regular.ttf
 
 widgets:
 
@@ -28,6 +27,7 @@ widgets:
         address: # me@domain.com
       - type: "ics"
         url: #URL to ics feed
+
   # Pulls the next DC WMATA train arrival prediction time for a specific station going in a specific direction
   - type: "wmata"
     api_key: # Setup an API account at https://developer.wmata.com/

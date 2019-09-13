@@ -1,6 +1,7 @@
 from lib.dashboard_config import DashboardConfig
+import sys
 
-config = DashboardConfig("./config.yaml")
+config = DashboardConfig("./config.yaml", sys.argv)
 dashboard = config.generate_dashboard()
 widgets = config.generate_widgets()
 for widget in widgets:
