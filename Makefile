@@ -11,12 +11,10 @@ ifeq ($(PLATFORM),Linux)
 	wget http://www.airspayce.com/mikem/bcm2835/bcm2835-1.60.tar.gz
 	tar zxf bcm2835-1.60.tar.gz
 	rm bcm2835-1.60.tar.gz
-	cd bcm2835-1.60
-	#TODO install dependencies
-	./configure
-	make
-	sudo make check
-	sudo make install
+	cd bcm2835-1.60 && ./configure
+	cd bcm2835-1.60 && make
+	cd bcm2835-1.60 && sudo make check
+	cd bcm2835-1.60 && sudo make install
 endif
 
 IT8951:
@@ -24,8 +22,7 @@ ifeq ($(PLATFORM),Linux)
 	wget https://www.waveshare.com/w/upload/1/15/IT8951.tar.gz
 	tar zxf IT8951.tar.gz
 	rm IT8951.tar.gz
-	cd IT8951
-	make IT8951
+	cd IT8951 && make IT8951
 endif
 
 open-sans:
