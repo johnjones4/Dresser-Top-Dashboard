@@ -1,6 +1,11 @@
 OUTPUT_FILE := "/tmp/dashboard.bmp"
 PLATFORM := $(shell uname)
 
+packages:
+ifeq ($(PLATFORM),Linux)
+	apt-get install python3 libopenjp2-7 libjbig0 libwebp6 libtiff5 icu-devtools libicu-dev libxml2-dev libxslt1.1 libxslt1-dev
+endif
+
 bcm2835:
 ifeq ($(PLATFORM),Linux)
 	wget http://www.airspayce.com/mikem/bcm2835/bcm2835-1.60.tar.gz
@@ -31,7 +36,7 @@ open-sans:
 pip:
 	pip3 install -r requirements.txt
 
-install: clean open-sans bcm2835 IT8951 pip
+install: clean open-sans packages bcm2835 IT8951 pip
 
 setup: install
 	cp config.sample.yaml config.yaml
