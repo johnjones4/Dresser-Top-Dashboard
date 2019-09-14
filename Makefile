@@ -3,7 +3,7 @@ PLATFORM := $(shell uname)
 
 packages:
 ifeq ($(PLATFORM),Linux)
-	apt-get install python3 libopenjp2-7 libjbig0 libwebp6 libtiff5 icu-devtools libicu-dev libxml2-dev libxslt1.1 libxslt1-dev
+	sudo apt-get install python3 libopenjp2-7 libjbig0 libwebp6 libtiff5 icu-devtools libicu-dev libxml2-dev libxslt1.1 libxslt1-dev
 endif
 
 bcm2835:
