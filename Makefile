@@ -53,6 +53,6 @@ ifeq ($(PLATFORM),Darwin)
 	open $(OUTPUT_FILE)
 else
 ifeq ($(PLATFORM),Linux)
-	./IT8951/IT8951 0 0 $(OUTPUT_FILE)
+	sudo ./IT8951/IT8951 0 0 $(OUTPUT_FILE)
 endif
 endif
