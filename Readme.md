@@ -40,5 +40,5 @@ The setup steps on a Raspberry pi are exactly the same as above, but to make sur
 Within the file, add the following line:
 
 ```
-* * * * * cd /home/pi/e-dashboard && make display
+*/2 * * * * cd /home/pi/e-dashboard && make display 2>&1 | /usr/bin/logger -r e-dashboard
 ```
