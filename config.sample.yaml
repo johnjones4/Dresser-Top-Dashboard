@@ -4,11 +4,14 @@ dashboard:
   gutter: 10 # Pixel width of the gutter between widgets
   rows: 4 # Number of widget rows
   cols: 4 # Number of widget columns
+  show_status: true # Show a device status bar
+
+text:
+  font_size: 16 # Pixel size of the default font
+  font_path: ./opensans-master/ttfs/OpenSans-Regular.ttf # Path to the font to use for rendering. Make will download Open Sans to this path during setup
 
 widget:
-  font_size: 16 # Pixel size of the default font
   padding: 5 # Pixel size of padding within widgets
-  font_path: ./opensans-master/ttfs/OpenSans-Regular.ttf # Path to the font to use for rendering. Make will download Open Sans to this path during setup
 
 widgets:
 

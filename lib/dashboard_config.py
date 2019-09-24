@@ -23,20 +23,27 @@ class DashboardConfig:
     return self.config[key]
 
   def generate_dashboard(self):
+    text_global_config = self.get("text")
+    font_size = text_global_config["font_size"]
+    font_path = text_global_config["font_path"]
     dashboard_config = self.get("dashboard")
     return Dashboard(
       dashboard_config["width"],
       dashboard_config["height"],
       dashboard_config["rows"],
       dashboard_config["cols"],
-      dashboard_config["gutter"]
+      dashboard_config["gutter"],
+      dashboard_config["show_status"],
+      font_size,
+      font_path
     )
 
   def generate_widgets(self):
     widget_global_config = self.get("widget")
-    font_size = widget_global_config["font_size"]
+    text_global_config = self.get("text")
+    font_size = text_global_config["font_size"]
     padding = widget_global_config["padding"]
-    font_path = widget_global_config["font_path"]
+    font_path = text_global_config["font_path"]
     widgets = self.get("widgets")
     widget_instances = []
     for widget_config in widgets:
