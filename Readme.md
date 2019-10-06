@@ -1,8 +1,8 @@
-# EDashboard
+# Dresser Top Dashboard
 
 ![](https://hackster.imgix.net/uploads/attachments/994827/uploads2ftmp2f0b140dba-44ca-4388-a848-5652320039822fimg_0980_escUODWEQh.jpg?auto=compress%2Cformat&w=900&h=675&fit=min)
 
-This is a project that displays a simple personal dashboard as an image. It is intended to be used with a hardware build detailed here.
+This is a project that displays a simple personal dashboard as an image. It is intended to be used with a hardware build detailed [here](https://www.hackster.io/johnjones4/dresser-top-dashboard-913ed3).
 
 ## Requirements
 
