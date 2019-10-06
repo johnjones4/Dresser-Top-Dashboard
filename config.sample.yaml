@@ -44,9 +44,8 @@ widgets:
 
   # Loads the current weather from OpenWeatherMap
   - type: "weather"
-    api_key: # Setup an API account at https://openweathermap.org/
-    zip: # See the Zip section on https://openweathermap.org/current
-    units: # imperial or metric
+    api_key: # Setup an API account at https://darksky.net/dev/
+    latlon: # Latitude and longitude in a comma separated string
     position:
       row: 1
       col: 2

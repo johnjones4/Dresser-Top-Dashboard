@@ -5,8 +5,7 @@ class WeatherWidget(Widget):
   def __init__(self, font_size, font_path, inset, config):
     super().__init__("Weather", font_size, font_path, inset, config)
     self.api_key = config['api_key']
-    self.zip = config['zip']
-    self.units = config['units']
+    self.latlon = config['latlon']
 
   def generate_content(self, drawable, x, y, width, height):
     weather = self.get_weather()
@@ -41,14 +40,10 @@ class WeatherWidget(Widget):
 
 
   def get_weather(self):
-    data = requests.get("https://api.openweathermap.org/data/2.5/weather", params={
-      "APPID": self.api_key,
-      "zip": self.zip,
-      "units": self.units
-    }).json()
+    data = requests.get("https://api.darksky.net/forecast/%s/%s" % (self.api_key, self.latlon)).json()
     return {
-      "description": data["weather"][0]["description"],
-      "temp": "%d°" % int(data["main"]["temp"]),
-      "low": "Low: %d°" % int(data["main"]["temp_min"]),
-      "high": "High: %d°" % int(data["main"]["temp_max"])
+      "description": data["daily"]["data"][0]["summary"],
+      "temp": "%d°" % int(data["currently"]["temperature"]),
+      "low": "Low: %d°" % int(data["daily"]["data"][0]["temperatureLow"]),
+      "high": "High: %d°" % int(data["daily"]["data"][0]["temperatureHigh"])
     }
